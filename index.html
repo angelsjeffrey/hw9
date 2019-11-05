@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JSON demo</title>
+<style type="text/css">
+    body{
+        font-size: 12px;
+        background-color: #c7d1d1;
+    }   
+</style>
+</head>
+
+
+<body>
+<p id = "serialized_data"></p>
+<p id = "display"></p>
+<form>
+    <select id = "choose_genre">
+        <option value="Rap">Rap</option>
+        <option value="Pop">Pop</option>
+        <option value="Metal">Metal</option>
+    </select>
+    <button type="button" onclick="genreSelect()">Submit</button>
+</form>
+<p id = "display_sorted"></p>
+
+
+<script language="javascript">
+setlist = [
+    {
+        'artist' : ['Calvin Harris'],
+        'title'  : 'This is What You Came For',
+        'genre'  : ['Pop'],
+        'year'   : '2016' 
+    },
+    {
+        'artist' : ['Calvin Harris'],
+        'title'  : 'Blame',
+        'genre'  : ['Pop'],
+        'year'   : '2014' 
+    },
+    {
+        'artist' : ['Calvin Harris'],
+        'title'  : 'Summer',
+        'genre'  : ['Pop'],
+        'year'   : '2014' 
+    },
+    {
+        'artist' : ['Calvin Harris'],
+        'title'  : 'One Kiss',
+        'genre'  : ['Pop'],
+        'year'   : '2018' 
+    },
+    {
+        'artist' : ['System of a Down'],
+        'title'  : 'Chop Suey!',
+        'genre'  : ['Metal'],
+        'year'   : '2001' 
+    },
+    {
+        'artist' : ['System of a Down'],
+        'title'  : 'Toxicity',
+        'genre'  : ['Metal'],
+        'year'   : '2001' 
+    },
+    {
+        'artist' : ['System of a Down'],
+        'title'  : 'Lost in Hollywood',
+        'genre'  : ['Metal'],
+        'year'   : '2001' 
+    },
+    {
+        'artist' : ['Kendrick Lamar'],
+        'title'  : 'Backstreet Freestyle',
+        'genre'  : ['Rap'],
+        'year'   : '2012' 
+    },
+    {
+        'artist' : ['Kendrick Lamar'],
+        'title'  : 'Poetic Justice',
+        'genre'  : ['Rap'],
+        'year'   : '2012' 
+    },
+    {
+        'artist' : ['Kendrick Lamar'],
+        'title'  : 'Money Trees',
+        'genre'  : ['Rap'],
+        'year'   : '2012' 
+    },
+]
+
+var serialized_data = JSON.stringify(setlist);
+document.getElementById("serialized_data").innerHTML = serialized_data;
+
+var parsed = JSON.parse(serialized_data);
+var display =  "";
+
+for (var x = 0; x < parsed.length; x++){
+    display += setlist[x].title + "<br>" +
+               "Artist: " + setlist[x].artist + "<br>" +
+               "Genre: " + setlist[x].genre + "<br>" +
+               "Released " + setlist[x].year + "<br>" + "<br>";
+}
+
+document.getElementById("display").innerHTML = display;
+</script>
+
+
+<script>
+function genreSelect() 
+{
+    var display_sorted = ""
+    genre = document.getElementById("choose_genre").value
+    for (var x = 0; x < 10; x++){
+        if (setlist[x].genre == genre) {
+            display_sorted += setlist[x].title + "<br>" +
+                              setlist[x].artist + "<br>" +
+                              setlist[x].genre + "<br>" +
+                              setlist[x].year + "<br>" + "<br>";
+        }
+    }  
+    document.getElementById("display_sorted").innerHTML = display_sorted;
+}
+
+</script>
+</body>
+</html>
